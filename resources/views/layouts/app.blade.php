@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -44,6 +46,7 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            <li><a class="nav-link" href="{{ route('home') }}">Dashboard</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -67,9 +70,15 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="p-0">
             @yield('content')
         </main>
     </div>
+
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/popper.js')}}"></script>
+    <script type="text/javascript" defer src="{{ asset('js/fontawesome-all.js')}}"></script>
+    
+    @yield('script')
 </body>
 </html>
