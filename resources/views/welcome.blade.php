@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    <div id="sidebar">
+        @include('templates.sidebar')
+    </div>
     <!-- CAROUSEL START -->
     <div id="myCarousel" class="carousel slide" date-ride="carousel">
         <ol class="carousel-indicators">
@@ -55,11 +58,19 @@
 @endsection
 
 @section('script')
-    <script language="JavaScript" type="text/javascript">
+    <script>
         $(document).ready(function(){
             $('.carousel').carousel({
-            interval: 3000
-            })
+                interval: 3000
+            });
+
+            $('.menu-link').bigSlide({
+                menu: ('#sidebar'),
+                menuWidth: '30vw',
+                push:('wrap'),
+                side: 'right',
+                saveState: true,
+            });
         });    
     </script>
 @endsection

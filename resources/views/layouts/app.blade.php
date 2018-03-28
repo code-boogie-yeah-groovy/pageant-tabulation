@@ -10,9 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -23,7 +20,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="wrap shrink">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -43,8 +40,20 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                        <!--
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        -->
+                            <li>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-outline-dark" disabled>
+                                        Login
+                                    </button>
+                                    <a href="#sidebar" class="btn btn-outline-dark menu-link">
+                                        <i class="fas fa-lg fa-sign-in-alt"></i>
+                                    </a>
+                                </div>
+                            </li>
                         @else
                             <li><a class="nav-link" href="{{ route('home') }}">Dashboard</a></li>
                             <li class="nav-item dropdown">
@@ -75,9 +84,11 @@
         </main>
     </div>
 
+    <script type="text/javascript" defer src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.js')}}"></script>
     <script type="text/javascript" defer src="{{ asset('js/fontawesome-all.js')}}"></script>
+    <script type="text/javascript" defer src="{{ asset('js/bigSlide.js') }}"></script>
     
     @yield('script')
 </body>
