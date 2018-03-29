@@ -37,17 +37,21 @@
     <!--CAROUSEL END-->
 
     <!--FOOTER START-->
-    <footer class="">
-        <div class="container">
+    <footer class="text-pink">
+        <div class="container p-3">
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <h4><b>Contact us on</b>	
                     <div class="footer_social">
                         <ul>
-                            <a class="f_facebook" href="#"><i class="fab fa-facebook" alt=:""></i> 
-                            Amacc Naga</a>
-                            <i class="fas fa-phone-square"></i>
-                            09123456789
+                            <a href="#" class="btn contact-link">
+                                <i class="fab fa-facebook"></i> 
+                                Amacc Naga
+                            </a>
+                            <a href="#" class="btn contact-link">
+                                <i class="fas fa-phone-square"></i>
+                                09123456789
+                            </a>
                         </ul>
                     </div>
                     </h4>														

@@ -23,7 +23,7 @@
     <div id="app" class="wrap shrink">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-pink" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,10 +46,10 @@
                         -->
                             <li>
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-outline-dark" disabled>
+                                    <button type="button" class="btn button-pink" disabled>
                                         Login
                                     </button>
-                                    <a href="#sidebar" class="btn btn-outline-dark menu-link">
+                                    <a href="#sidebar" class="btn button-pink menu-link">
                                         <i class="fas fa-lg fa-sign-in-alt"></i>
                                     </a>
                                 </div>

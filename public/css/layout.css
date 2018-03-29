@@ -22,9 +22,50 @@ footer {
 	right: -15.625em;
 	width: 15.625em;
 	z-index: 1000000;
-	background-color: darkslategray;
+	background-color: pink;
+}
+
+#sidebar button {
+    background-color:#e43c5c;
+    color: white;
+}
+
+#sidebar div.card-header {
+    background-color: #e43c5c;
+    color: white;
+}
+
+#sidebar div.card {
+    border: 1px solid #e43c5c;
+}
+
+#sidebar input {
+    color: red;
+    border: 1px solid #e43c5c;
 }
 
 .wrap {
 	position: relative;
+}
+
+.text-pink {
+    color: #e43c5c!important;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.button-pink {
+    border: 1px solid #e43c5c;
+    color: #e43c5c;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+a:hover.button-pink, a:hover.contact-link {
+    color: red;
+}
+
+.contact-link {
+    color: #e43c5c;
+    font-size: 1rem;
 }

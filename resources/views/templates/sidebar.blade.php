@@ -21,7 +21,7 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-12 text-right">
-                            <button type="submit" class="btn btn-dark pl-5 pr-5">
+                            <button type="submit" class="btn pl-5 pr-5">
                                 Enter
                             </button>
                         </div>
@@ -63,19 +63,9 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember" {{ old( 'remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group row mb-0">
                         <div class="col-md-12 text-right">
-                            <button type="submit" class="btn btn-dark pl-5 pr-5">
+                            <button type="submit" class="btn pl-5 pr-5">
                                 {{ __('Login') }}
                             </button>
                         </div>
