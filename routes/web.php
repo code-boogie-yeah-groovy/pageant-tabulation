@@ -19,6 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/test', function() {
-    return view('test');
+Route::post('/tabulation', function() {
+    return view('judge.tabulation');
 });

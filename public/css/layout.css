@@ -17,6 +17,11 @@ footer {
     box-shadow: none!important;
 }
 
+input:focus {
+    -webkit-box-shadow: 0 0 10px rgba(255, 20, 147, 1)!important;
+    box-shadow: 0 0 10px rgba(255, 20, 147, 1)!important;
+}
+
 #sidebar {
 	position: fixed;
 	right: -15.625em;
