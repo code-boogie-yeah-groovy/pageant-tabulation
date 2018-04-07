@@ -16,7 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category_name');
-            $table->decimal('percentage', 2, 2);
+            $table->decimal('percentage');
             $table->integer('event_id')->unsigned();
             $table->timestamps();
         });
