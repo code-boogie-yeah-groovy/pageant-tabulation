@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/tabulation', function() {
-    return view('judge.tabulation');
+Route::post('/judgeLogin', 'TabulateController@judgeLogin');
+
+Route::get('/judgeLogout', 'TabulateController@judgeLogout');
+
+Route::middleware('checkCode')->group(function () {
+    Route::get('/tabulation', 'TabulateController@index');
 });

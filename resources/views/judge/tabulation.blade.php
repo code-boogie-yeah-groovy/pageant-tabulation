@@ -22,3 +22,4 @@
     </div>
 </div>
 
+<a href="/judgeLogout">Logout</a>

@@ -4,7 +4,7 @@
             <div class="card-header">Judge/Scorer</div>
 
             <div class="card-body">
-                <form method="POST" action="/tabulation">
+                <form method="POST" action="/judgeLogin">
                     @csrf
 
                     <div class="form-group row">
