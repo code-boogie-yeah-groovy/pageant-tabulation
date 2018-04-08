@@ -37,8 +37,8 @@
     <!--CAROUSEL END-->
 
     <!--FOOTER START-->
-    <footer class="text-pink">
-        <div class="container p-3">
+    <footer class="text-pink d-flex align-items-center">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <h4><b>Contact us on</b>	
