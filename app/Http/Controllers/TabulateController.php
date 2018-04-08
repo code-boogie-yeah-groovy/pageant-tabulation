@@ -12,12 +12,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Passcode;
+use App\Event;
 
 class TabulateController extends Controller
 {
 
-    public function index() {
-        return view('judge.tabulation');
+    public function index(Request $request) {
+        $passcode = Passcode::where('id', '=', $request->session()->get('code_id'))->get()->first();
+        return view('judge.tabulation')->with('passcode', $passcode);
     }
 
     public function judgeLogin(Request $request) {
@@ -25,8 +27,8 @@ class TabulateController extends Controller
         $passcode = Passcode::where('code', '=', $code)->get()->first();
 
         if($passcode !== null) {
-            $judge_name = $passcode->judge_name;
-            $request->session()->put('judge_name', $judge_name);
+            $code_id = $passcode->id;
+            $request->session()->put('code_id', $code_id);
             return redirect('tabulation');
         } else {
             return redirect('/');

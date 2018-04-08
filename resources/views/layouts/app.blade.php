@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 
 </head>
@@ -84,11 +84,11 @@
         </main>
     </div>
 
-    <script type="text/javascript" defer src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('js/popper.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js')}}"></script>
     <script type="text/javascript" defer src="{{ asset('js/fontawesome-all.js')}}"></script>
-    <script type="text/javascript" defer src="{{ asset('js/bigSlide.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bigSlide.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>
     
     @yield('script')
 </body>

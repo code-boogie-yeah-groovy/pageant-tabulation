@@ -15,7 +15,7 @@ class CheckCode
      */
     public function handle($request, Closure $next)
     {
-        if ($request->session()->get('judge_name') === null) {
+        if ($request->session()->get('code_id') === null) {
             return redirect('/');
         }
         return $next($request);
