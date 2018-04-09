@@ -8,10 +8,10 @@
     <div class="col-4">
       <div class="card">
         <div class="card-header">Category</div>
-        <div class="list-group list-group-flush" role="tablist" id="catList">
+        <div class="nav list-group list-group-flush" role="tablist" id="catList">
           @foreach($passcode->event->category as $category)
-          <a class="list-group-item cat" data-toggle="list" role="tab" data-cat="{{$category->category_name}}"
-            href="#" onclick="setCategoryValue('{{$category->category_name}}');return false;">
+          <a class="nav-link list-group-item cat" data-toggle="list" role="tab" data-cat="{{$category->category_name}}"
+            href="#cat{{ $category->id }}panel" onclick="setCategoryValue('{{$category->category_name}}');return false;">
             {{ $category->category_name }}
           </a>
           @endforeach  
@@ -68,26 +68,35 @@
         <div class="card-header">
           Score
         </div>
-        <div class="card-body">
+        <div class="card-body tab-content">
           <h5 class="card-title">@{{ contestant }}</h5>
           <p class="card-text">@{{ category }}</p>
-          <form action="#" method="get">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend w-75">
-              <span class="input-group-text w-100">Stage presence</span>
+          @foreach($passcode->event->category as $category)
+            <div class="tab-pane" role="tabpanel" id="cat{{ $category->id }}panel">
+              <form action="#" method="get">
+                @forelse($category->criteria as $criteria)
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend w-75">
+                      <span class="input-group-text w-100">
+                        {{ $criteria->criteria_name }}&nbsp;&nbsp;&#40;{{ $criteria->percentage + 0 }}&#37;&#41;
+                      </span>
+                    </div>
+                    <input type="text" class="form-control w-25">
+                  </div>
+                @empty
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend w-75">
+                      <span class="input-group-text w-100">Score</span>
+                    </div>
+                    <input type="text" class="form-control w-25">
+                  </div>
+                @endforelse
+                <button type="submit" class="btn btn-danger float-right">Submit Score</button>
+              </form>
             </div>
-            <input type="text" class="form-control w-25">
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend w-75">
-              <span class="input-group-text w-100">Audience impact</span>
-            </div>
-            <input type="text" class="form-control w-25">
-          </div>
-          <button type="submit" class="btn btn-danger float-right">Submit Score</button>
+          @endforeach
         </div>
       </div>
-      </form>
     </div>
   </div>
   <hr class="my-4">
