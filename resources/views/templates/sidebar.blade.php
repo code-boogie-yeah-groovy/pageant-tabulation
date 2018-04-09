@@ -9,11 +9,11 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <input id="passcode" type="text" class="form-control{{ $errors->has('passcode') ? ' is-invalid' : '' }}" name="passcode"
+                            <input id="passcode" type="text" class="form-control {{ isset($errors) ? ' is-invalid' : '' }}" name="passcode"
                                 placeholder="Passcode" required autofocus>
-                            @if ($errors->has('passcode'))
+                            @if (isset($errors))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('passcode') }}</strong>
+                                    <strong>{{ $errors->first() }}</strong>
                                 </span>
                             @endif
                         </div>

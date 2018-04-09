@@ -44,16 +44,21 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         -->
-                            <li>
-                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn button-pink" disabled>
-                                        Login
-                                    </button>
-                                    <a href="#sidebar" class="btn button-pink menu-link">
-                                        <i class="fas fa-lg fa-sign-in-alt"></i>
-                                    </a>
-                                </div>
-                            </li>
+                            @if(session()->has('code_id'))
+                                hello judge
+                                <a href="/judgeLogout">Logout</a>
+                            @else
+                                <li>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <button type="button" class="btn button-pink" disabled>
+                                            Login
+                                        </button>
+                                        <a href="#sidebar" class="btn button-pink menu-link">
+                                            <i class="fas fa-lg fa-sign-in-alt"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            @endif
                         @else
                             <li><a class="nav-link" href="{{ route('home') }}">Dashboard</a></li>
                             <li class="nav-item dropdown">

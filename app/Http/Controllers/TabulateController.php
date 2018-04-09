@@ -31,7 +31,7 @@ class TabulateController extends Controller
             $request->session()->put('code_id', $code_id);
             return redirect('tabulation');
         } else {
-            return redirect('/');
+            return redirect()->back()->withErrors('You have entered an invalid code.');
         }
     }
 
