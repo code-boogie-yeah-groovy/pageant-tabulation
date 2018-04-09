@@ -44,8 +44,8 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         -->
-                            @if(session()->has('code_id'))
-                                hello judge
+                            @if(session()->has('code_id') && isset($passcode) )
+                                Hello, {{ $passcode->judge_name }} &nbsp; &nbsp;
                                 <a href="/judgeLogout">Logout</a>
                             @else
                                 <li>

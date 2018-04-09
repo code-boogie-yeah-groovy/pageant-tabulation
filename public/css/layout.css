@@ -74,3 +74,8 @@ a:hover.button-pink, a:hover.contact-link {
     color: #e43c5c;
     font-size: 1rem;
 }
+
+.tabulation .list-group {
+    max-height: 49.5vh;
+    overflow-y: scroll;
+}

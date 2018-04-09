@@ -16,6 +16,7 @@ class CreateContestantsTable extends Migration
         Schema::create('contestants', function (Blueprint $table) {
             $table->increments('id');
             $table->string('contestant_name');
+            $table->boolean('mister')->default(false);
             $table->integer('contestant_no')->unsigned();
             $table->integer('event_id')->unsigned();
             $table->timestamps();

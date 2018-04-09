@@ -11,4 +11,8 @@ class Category extends Model
     public function event() {
         return $this->belongsTo('App\Event');
     }
+
+    public function criteria() {
+        return $this->hasMany('App\Criteria');
+    }
 }

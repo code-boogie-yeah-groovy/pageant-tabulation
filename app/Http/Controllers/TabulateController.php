@@ -19,7 +19,7 @@ class TabulateController extends Controller
 
     public function index(Request $request) {
         $passcode = Passcode::where('id', '=', $request->session()->get('code_id'))->get()->first();
-        return view('judge.tabulation')->with('passcode', $passcode);
+        return view('judge.tabulation', ['passcode' => $passcode]);
     }
 
     public function judgeLogin(Request $request) {

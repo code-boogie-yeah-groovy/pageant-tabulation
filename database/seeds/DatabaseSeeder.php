@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesTableSeeder::class);
         $this->call(PasscodesTableSeeder::class);
         $this->call(ContestantsTableSeeder::class);
+        $this->call(CriteriaTableSeeder::class);
     }
 }
