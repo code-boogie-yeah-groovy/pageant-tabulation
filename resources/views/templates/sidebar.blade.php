@@ -11,9 +11,9 @@
                         <div class="col-md-12">
                             <input id="passcode" type="text" class="form-control {{ isset($errors) ? ' is-invalid' : '' }}" name="passcode"
                                 placeholder="Passcode" required autofocus>
-                            @if (isset($errors))
+                            @if ($errors->has('passcode'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first() }}</strong>
+                                    <strong>{{ $errors->first('passcode') }}</strong>
                                 </span>
                             @endif
                         </div>

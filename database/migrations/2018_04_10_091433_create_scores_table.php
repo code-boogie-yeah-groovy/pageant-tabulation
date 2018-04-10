@@ -18,7 +18,8 @@ class CreateScoresTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->integer('contestant_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->integer('score')->unsigned();
+            $table->integer('criteria_id')->unsigned();
+            $table->decimal('score');
             $table->timestamps();
         });
 
@@ -26,6 +27,7 @@ class CreateScoresTable extends Migration
             $table->foreign('event_id')->references('id')->on('events');
             $table->foreign('contestant_id')->references('id')->on('contestants');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('criteria_id')->references('id')->on('criterias');
         });
     }
 
