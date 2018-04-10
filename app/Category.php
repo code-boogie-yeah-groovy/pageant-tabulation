@@ -15,4 +15,8 @@ class Category extends Model
     public function criteria() {
         return $this->hasMany('App\Criteria');
     }
+
+    public function score() {
+        return $this->hasMany('App\Score');
+    }
 }

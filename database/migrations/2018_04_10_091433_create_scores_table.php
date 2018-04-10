@@ -16,6 +16,7 @@ class CreateScoresTable extends Migration
         Schema::create('scores', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
+            $table->integer('passcode_id')->unsigned();
             $table->integer('contestant_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->integer('criteria_id')->unsigned();
@@ -25,6 +26,7 @@ class CreateScoresTable extends Migration
 
         Schema::table('scores', function (Blueprint $table) {
             $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('passcode_id')->references('id')->on('passcodes');
             $table->foreign('contestant_id')->references('id')->on('contestants');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('criteria_id')->references('id')->on('criterias');

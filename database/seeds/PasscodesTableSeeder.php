@@ -16,16 +16,25 @@ class PasscodesTableSeeder extends Seeder
                 'code' => 'code1',
                 'judge_name' => 'judge1',
                 'event_id' => 1,
+                'usable' => true,
             ],
             [
                 'code' => 'code2',
                 'judge_name' => 'judge2',
                 'event_id' => 1,
+                'usable' => true,
             ],
             [
                 'code' => 'code3',
                 'judge_name' => 'judge3',
                 'event_id' => 1,
+                'usable' => true,
+            ],
+            [
+                'code' => 'code4',
+                'judge_name' => 'judge3',
+                'event_id' => 1,
+                'usable' => false,
             ],
         ]);
     }

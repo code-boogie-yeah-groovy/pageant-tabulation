@@ -8,6 +8,10 @@ class Event extends Model
 {
     //
 
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+    
     public function passcode() {
         return $this->hasMany('App\Passcode');
     }
@@ -18,5 +22,9 @@ class Event extends Model
 
     public function contestant() {
         return $this->hasMany('App\Contestant');
+    }
+
+    public function score() {
+        return $this->hasMany('App\Score');
     }
 }

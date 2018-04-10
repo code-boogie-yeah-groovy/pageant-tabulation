@@ -18,6 +18,7 @@ class CreatePasscodesTable extends Migration
             $table->string('code')->unique();
             $table->integer('event_id')->unsigned();
             $table->string('judge_name');
+            $table->boolean('usable')->default(true);
             $table->timestamps();
         });
 

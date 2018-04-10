@@ -32,7 +32,7 @@ class TabulateController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'passcode' => 'required|exists:passcodes,code',
+            'passcode' => 'required|exists:passcodes,code,usable,1',
         ], $messages);
 
         if ($validator->fails()) {
