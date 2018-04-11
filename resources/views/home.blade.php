@@ -33,6 +33,25 @@
                             <input type="text" class="form-control" name="event_name" id="event_name">
                         </div>
                     </div>
+                    <div class="card-title">
+                        Date
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" name="date" id="date">
+                    </div>
+                    <div class="card-title">Judges</div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Judge Name">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">Add</button>
+                        </div>
+                    </div>
+                    <ol class="rectangle-list">
+                        <li><span>judge name</span></li>
+                        <li><span>judge name</span></li>
+                        <li><span>judge name</span></li>
+                        <li><span>judge name</span></li>
+                    </ol>
                 </div>
             </div>
             <div class="nav list-group list-group-flush" role="tablist">
@@ -56,8 +75,8 @@
             </div>
         </div>
     </div>
-    <div class="admincontent">
-        content
+    <div class="admincontent container">
+        @include('admin.newevent')
     </div>
 </div>
 @endsection
