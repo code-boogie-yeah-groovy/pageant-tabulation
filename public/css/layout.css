@@ -167,13 +167,19 @@ ol.rectangle-list {
     *list-style: decimal; /* Keep using default numbering for IE6/7 */
     font: 15px 'trebuchet MS', 'lucida sans';
     padding: 0;
-    margin-bottom: 4em;
+    margin-bottom: 1em;
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 
 ol.rounded-list ol,
 ol.rectangle-list ol {
     margin: 0 0 0 2em; /* Add some left margin for inner lists */
+    counter-reset: li; /* Initiate a counter */
+    list-style: none; /* Remove default numbering */
+    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 
 .rectangle-list span:before{
@@ -197,8 +203,7 @@ ol.rectangle-list ol {
     border: .5em solid transparent;
     left: -1em;
     top: 50%;
-    margin-top: -.5em;
-    transition: all .3s ease-out;               
+    margin-top: -.5em;              
 }
 
 .rounded-list span{
@@ -232,4 +237,8 @@ ol.rectangle-list ol {
     -webkit-border-radius: 2em;
     -moz-border-radius: 2em;
     border-radius: 2em;
+}
+
+.red-list span:before{
+    background: #fa8072!important;
 }

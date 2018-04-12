@@ -11,7 +11,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="admincontainer">
+<div class="admincontainer" id="admincontainer">
     <div class="adminsidenav">
         <div class="card">
             <div class="card-header">
@@ -24,33 +24,30 @@
                 <div class="card-body">
                     <div class="card-title">Event Name</div>
                     <div class="input-group form-group">
-                        <select class="custom-select" name="event_type" id="event_type">
-                            <option value="1" selected>Ms</option>
-                            <option value="2">Mr</option>
-                            <option value="3">Mr&amp;Ms</option>
+                        <select class="custom-select" name="event_type" id="event_type" v-model="eventType">
+                            <option selected>Ms</option>
+                            <option>Mr</option>
+                            <option>Mr&amp;Ms</option>
                         </select>
                         <div class="input-group-append">
-                            <input type="text" class="form-control" name="event_name" id="event_name">
+                            <input type="text" class="form-control" name="event_name" id="event_name" v-model="eventName">
                         </div>
                     </div>
                     <div class="card-title">
                         Date
                     </div>
                     <div class="form-group">
-                        <input type="date" class="form-control" name="date" id="date">
+                        <input type="date" class="form-control" name="date" id="date" v-model="eventDate">
                     </div>
                     <div class="card-title">Judges</div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Judge Name">
+                        <input type="text" class="form-control" placeholder="Judge Name" v-model="newJudge" v-on:keyup.enter="addJudge">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Add</button>
+                            <button class="btn btn-outline-danger" type="button" @click.prevent="addJudge">Add</button>
                         </div>
                     </div>
                     <ol class="rectangle-list">
-                        <li><span>judge name</span></li>
-                        <li><span>judge name</span></li>
-                        <li><span>judge name</span></li>
-                        <li><span>judge name</span></li>
+                        <li v-for="judge in judges" v-bind:key="judge.id"><span>@{{ judge.item }}</span></li>
                     </ol>
                 </div>
             </div>
@@ -79,4 +76,68 @@
         @include('admin.newevent')
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    new Vue({
+        el: '#admincontainer',
+        data: {
+            eventType:'Ms',
+            eventName: '',
+            eventDate: '',
+            judges: [],
+            newJudge: '',
+            contMs: [],
+            newContMs: '',
+            contMr: [],
+            newContMr: '',
+            duplicate: 0,
+        },
+        methods: {
+            addJudge:function() {
+                let id = this.judges.length + 1
+                for(var i=0; i<this.judges.length; i++) {
+                    if(this.judges[i].item == this.newJudge) {
+                        this.duplicate = 1
+                    }
+                }
+                if(this.newJudge !== '' && this.duplicate == 0) {
+                    const newList = {id:id,item:this.newJudge}
+                    this.judges.push(newList)
+                    this.newJudge = ''
+                }
+                this.duplicate = 0
+            },
+            addContMs:function() {
+                let id = this.contMs.length + 1
+                for(var i=0; i<this.contMs.length; i++) {
+                    if(this.contMs[i].item == this.newContMs) {
+                        this.duplicate = 1
+                    }
+                }
+                if(this.newContMs !== '' && this.duplicate == 0) {
+                    const newList = {id:id,item:this.newContMs}
+                    this.contMs.push(newList)
+                    this.newContMs = ''
+                }
+                this.duplicate = 0
+            },
+            addContMr:function() {
+                let id = this.contMr.length + 1
+                for(var i=0; i<this.contMr.length; i++) {
+                    if(this.contMr[i].item == this.newContMr) {
+                        this.duplicate = 1
+                    }
+                }
+                if(this.newContMr !== '' && this.duplicate == 0) {
+                    const newList = {id:id,item:this.newContMr}
+                    this.contMr.push(newList)
+                    this.newContMr = ''
+                }
+                this.duplicate = 0
+            },
+        },
+    });    
+</script>
 @endsection
