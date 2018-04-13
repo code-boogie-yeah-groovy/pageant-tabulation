@@ -56,18 +56,6 @@
                     <a href="#" class="nav-link list-group-item" data-toggle="list" role="tab">
                         {{ $event->event_name }}
                     </a>
-                    <a href="#" class="nav-link list-group-item" data-toggle="list" role="tab">
-                        {{ $event->event_name }}
-                    </a>
-                    <a href="#" class="nav-link list-group-item" data-toggle="list" role="tab">
-                        {{ $event->event_name }}
-                    </a>
-                    <a href="#" class="nav-link list-group-item" data-toggle="list" role="tab">
-                        {{ $event->event_name }}
-                    </a>
-                    <a href="#" class="nav-link list-group-item" data-toggle="list" role="tab">
-                        {{ $event->event_name }}
-                    </a>
                 @endforeach
             </div>
         </div>
@@ -80,7 +68,9 @@
 
 @section('script')
 <script>
-    new Vue({
+    var categories = [];
+
+    var newEvent = new Vue({
         el: '#admincontainer',
         data: {
             eventType:'Ms',
@@ -93,6 +83,8 @@
             contMr: [],
             newContMr: '',
             duplicate: 0,
+            catCount: 1,
+            categories: categories,
         },
         methods: {
             addJudge:function() {
@@ -138,6 +130,21 @@
                 this.duplicate = 0
             },
         },
+    });
+    
+    $('#submitCategories').click(function() {
+        categories.length = 0;
+        var n ='', p = null, newCat = {};
+        $('.cats').each(function() {
+            n = ($(this).find('.catname').val());
+            p = ($(this).find('.catper').val());
+            if(n!='' && p>0) {
+                newCat = {name:n, percentage:p};
+                categories.push(newCat);
+            }
+        })
+        console.log(categories);
+        $('#addCategoryModal').modal('toggle');
     });    
 </script>
 @endsection

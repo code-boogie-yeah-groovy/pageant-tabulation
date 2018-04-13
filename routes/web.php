@@ -25,3 +25,7 @@ Route::get('/judgeLogout', 'TabulateController@judgeLogout');
 Route::middleware('checkCode')->group(function () {
     Route::get('/tabulation', 'TabulateController@index');
 });
+
+Route::get('/addEvent', 'EventController@addEvent');
+
+Route::get('/addScore', 'ScoreController@addScore');

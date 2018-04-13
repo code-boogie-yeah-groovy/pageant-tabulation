@@ -8,6 +8,9 @@ class Contestant extends Model
 {
     //
 
+
+    protected $fillable = ['contestant_name', 'mister', 'contestant_no', 'event_id'];
+
     public function event() {
         return $this->belongsTo('App\Event');
     }

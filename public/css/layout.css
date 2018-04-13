@@ -86,6 +86,10 @@ a:hover.button-pink, a:hover.contact-link {
     overflow-y: scroll;
 }
 
+.tabulation {
+    min-height: 85vh;
+}
+
 main, .jumbotron {
     background-color: #FFD2E8;
 }

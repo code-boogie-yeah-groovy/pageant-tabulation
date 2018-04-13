@@ -7,10 +7,16 @@
 
 
 
-<form action="#" method="get">
-    <input type="hidden" v-for="judge in judges" :value="judge.item">
-    <input type="hidden" v-for="cont in contMs" :value="cont.item">
-    <input type="hidden" v-for="cont in contMr" :value="cont.item">
+
+<form action="addEvent" method="get">
+    @csrf
+    <input type="hidden" name="eventname" :value="eventType + ' ' + eventName">
+    <input type="hidden" name="date" :value="eventDate">
+    <input type="hidden" v-for="category in categories" name="categories[]" :value="category.name">
+    <input type="hidden" v-for="category in categories" name="percentage[]" :value="category.percentage">
+    <input type="hidden" v-for="judge in judges" name="judges[]" :value="judge.item">
+    <input type="hidden" v-for="cont in contMs" name="contMs[]" :value="cont.item">
+    <input type="hidden" v-for="cont in contMr" name="contMr[]" :value="cont.item">
     <button type="submit" class="btn btn-danger mt-5 float-right">Save&nbsp;&nbsp;<i class="far fa-save"></i></button>
 </form>
 <h1 class="text-center"><span id="type_display">@{{ eventType }}</span><span id="event_display">&nbsp;@{{ eventName }}</span></h1>
@@ -26,17 +32,7 @@
             <div class="card-body">
                 <button class="btn btn-outline-danger col-md-6 offset-md-6 w-100" data-toggle="modal" data-target="#addCategoryModal">Edit&nbsp;&nbsp;<i class="far fa-edit"></i></button>
                 <ol class="rectangle-list">
-                    <li><span>List item</span></li>
-                    <li><span>List item</span></li>
-                    <li><span>List item</span>
-                        <ol>
-                            <li><span>List sub item</span></li>
-                            <li><span>List sub item</span></li>
-                            <li><span>List sub item</span></li>
-                        </ol>
-                    </li>
-                    <li><span>List item</span></li>
-                    <li><span>List item</span></li>                       
+                    <li v-for="cat in categories"><span>@{{ cat.name }} @{{ cat.percentage }} </span></li>                       
                 </ol>
             </div>
         </div>
@@ -92,11 +88,34 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="row">
+                        <div class="col-md-8 text-right">
+                            <label for="cat_count">Number of Categories</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" type="number" min="1" name="cat_count" id="cat_count" v-model.number="catCount">
+                        </div>
+                    </div>
+                    <table class="table table-bordered mt-2">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>&#37;</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cats" v-for="count in catCount">
+                                <td class="p-0"><input type="text" class="m-0 h-100 w-100 catname" required></td>
+                                <td class="p-0"><input type="number" class="catper m-0 h-100 w-100" min="1" max="100" required></td>
+                                <td class="p-0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="submitCategories">Save changes</button>
                 </div>
             </div>
         </div>

@@ -15,4 +15,6 @@ class Passcode extends Model
     public function score() {
         return $this->hasMany('App\Score');
     }
+
+    protected $fillable = ['code', 'event_id', 'judge_name', 'usable'];
 }

@@ -19,7 +19,7 @@ class CreateScoresTable extends Migration
             $table->integer('passcode_id')->unsigned();
             $table->integer('contestant_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->integer('criteria_id')->unsigned();
+            $table->integer('criteria_id')->unsigned()->nullable();
             $table->decimal('score');
             $table->timestamps();
         });

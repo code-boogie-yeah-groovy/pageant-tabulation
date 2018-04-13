@@ -19,4 +19,6 @@ class Category extends Model
     public function score() {
         return $this->hasMany('App\Score');
     }
+
+    protected $fillable = ['category_name', 'percentage', 'event_id'];
 }

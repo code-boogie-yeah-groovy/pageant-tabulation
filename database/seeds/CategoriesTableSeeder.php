@@ -13,17 +13,17 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'category_name' => 'category1',
+                'category_name' => 'Casual',
                 'percentage' => '20.00',
                 'event_id' => 1,
             ],
             [
-                'category_name' => 'category2',
+                'category_name' => 'Talent',
                 'percentage' => '35.00',
                 'event_id' => 1,
             ],
             [
-                'category_name' => 'category3',
+                'category_name' => 'Q&A',
                 'percentage' => '45.00',
                 'event_id' => 1,
             ],

@@ -10,8 +10,8 @@
         <div class="card-header">Category</div>
         <div class="nav list-group list-group-flush" role="tablist" id="catList">
           @foreach($passcode->event->category as $category)
-          <a class="nav-link list-group-item cat" data-toggle="list" role="tab" data-cat="{{$category->category_name}}"
-            href="#cat{{ $category->id }}panel" onclick="setCategoryValue('{{$category->category_name}}');return false;">
+          <a class="nav-link list-group-item cat" data-toggle="list" role="tab" data-cat="{{$category->category_name}}"  data-catid="{{ $category->id }}"
+            href="#cat{{ $category->id }}panel" onclick="setCategoryValue('{{$category->category_name}}', '{{$category->id}}');return false;">
             {{ $category->category_name }}
           </a>
           @endforeach  
@@ -37,8 +37,8 @@
                 @foreach($passcode->event->contestant as $contestant)
                   @if($contestant->mister == false)
                     <a class="list-group-item d-flex justify-content-between align-items-center" role="tab"
-                      data-toggle="list" href="#" onclick="setContestantValue('{{$contestant->contestant_name}}');return false;"
-                      data-cont="{{$contestant->contestant_name}}">
+                      data-toggle="list" href="#" onclick="setContestantValue('{{$contestant->contestant_name}}', '{{$contestant->id}}');return false;"
+                      data-cont="{{$contestant->contestant_name}}" data-contid="{{ $contestant->id }}">
                       {{ $contestant->contestant_name }}
                       <span class="badge badge-danger">&#35;&nbsp;{{ $contestant->contestant_no }}</span>
                     </a>
@@ -51,8 +51,8 @@
                 @foreach($passcode->event->contestant as $contestant)
                   @if($contestant->mister == true)
                     <a class="list-group-item d-flex justify-content-between align-items-center" data-toggle="list"
-                     role="tab" href="#" onclick="setContestantValue('{{$contestant->contestant_name}}');return false;"
-                     data-cont="{{$contestant->contestant_name}}">
+                     role="tab" href="#" onclick="setContestantValue('{{$contestant->contestant_name}}', '{{$contestant->id}}');return false;"
+                     data-cont="{{$contestant->contestant_name}}" data-contid="{{ $contestant->id }}">
                       {{ $contestant->contestant_name }}
                       <span class="badge badge-danger">&#35;&nbsp;{{ $contestant->contestant_no }}</span>
                     </a>
@@ -73,8 +73,8 @@
           <p class="card-text">@{{ category }}</p>
           @foreach($passcode->event->category as $category)
             <div class="tab-pane" role="tabpanel" id="cat{{ $category->id }}panel">
-              <form action="#" method="get">
-                @forelse($category->criteria as $criteria)
+              <form action="/addScore" method="get">
+                {{--@forelse($category->criteria as $criteria)
                   <div class="input-group mb-3">
                     <div class="input-group-prepend w-75">
                       <span class="input-group-text w-100">
@@ -83,14 +83,18 @@
                     </div>
                     <input type="text" class="form-control w-25">
                   </div>
-                @empty
+                @empty--}}
                   <div class="input-group mb-3">
                     <div class="input-group-prepend w-75">
                       <span class="input-group-text w-100">Score</span>
                     </div>
-                    <input type="text" class="form-control w-25">
+                    <input type="number" class="form-control w-25" name="score" min="0" max="100" required>
+                    <input type="hidden" name="passcodeid" value="{{ $passcode->id }}">
+                    <input type="hidden" name="eventid" value="{{ $passcode->event->id }}">
+                    <input type="hidden" name="contestantid" :value="contestantid">
+                    <input type="hidden" name="categoryid" :value="categoryid">
                   </div>
-                @endforelse
+                {{--@endforelse--}}
                 <button type="submit" class="btn btn-danger float-right">Submit Score</button>
               </form>
             </div>
@@ -114,24 +118,30 @@
     $('#catList a:first-child').tab('show');
     $('.contList a:first-child').tab('show');
     tabulation.category = $('#catList a:first-child').data('cat');
+    tabulation.categoryid = $('#catList a:first-child').data('catid');
     tabulation.contestant = $('.contList a:first-child').data('cont');
+    tabulation.contestantid = $('.contList a:first-child').data('contid');
     $('a.genderTab[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       var target = $(e.target).attr("href")
-      setContestantValue(($(target + ' .contList a.active').data('cont')))
+      setContestantValue(($(target + ' .contList a.active').data('cont')), ($(target + ' .contList a.active').data('contid')))
     });
   });
 
-  function setCategoryValue(category) {
+  function setCategoryValue(category, categoryid) {
     tabulation.category = category;
+    tabulation.categoryid = categoryid;
   }
 
-  function setContestantValue(contestant) {
+  function setContestantValue(contestant, contestantid) {
     tabulation.contestant = contestant;
+    tabulation.contestantid = contestantid;
   }
 
   var tabulation = {
     category: 'category',
-    contestant: 'contestant'
+    categoryid: 'categoryid',
+    contestant: 'contestant',
+    contestantid: 'contestantid'
   }
 
   app = new Vue({

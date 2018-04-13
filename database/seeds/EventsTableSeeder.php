@@ -12,9 +12,9 @@ class EventsTableSeeder extends Seeder
     public function run()
     {
         DB::table('events')->insert([
-            'event_name' => 'test_event',
+            'event_name' => 'Miss AMA',
             'user_id' => 1,
-            'event_date' => '2018-12-12',
+            'event_date' => '2018-04-13',
         ]);
     }
 }
