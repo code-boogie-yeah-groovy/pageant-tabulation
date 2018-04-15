@@ -3,8 +3,11 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="jumbotron m-0 pb-4 tabulation" id="tabulation">
+<div class="jumbotron m-0 pt-4 pb-4 tabulation" id="tabulation">
   <div class="row">
+    <div class="col-12 mb-2 d-flex">
+      <a href="scorecard" target="_blank" class="btn btn-danger ml-auto">My Score Card</a>
+    </div>
     <div class="col-4">
       <div class="card">
         <div class="card-header">Category</div>
@@ -85,17 +88,17 @@
                   </div>
                 @empty--}}
                   <div class="input-group mb-3">
-                    <div class="input-group-prepend w-75">
-                      <span class="input-group-text w-100">Score</span>
+                    <div class="input-group-prepend w-50">
+                      <span class="input-group-text w-100">Score (1-100)</span>
                     </div>
-                    <input type="number" class="form-control w-25" name="score" min="0" max="100" required>
+                    <input type="number" class="form-control w-50" name="score" min="0" max="100" required :disabled="hasScore" :value="points">
                     <input type="hidden" name="passcodeid" value="{{ $passcode->id }}">
                     <input type="hidden" name="eventid" value="{{ $passcode->event->id }}">
                     <input type="hidden" name="contestantid" :value="contestantid">
                     <input type="hidden" name="categoryid" :value="categoryid">
                   </div>
                 {{--@endforelse--}}
-                <button type="submit" class="btn btn-danger float-right">Submit Score</button>
+                <button type="submit" class="btn btn-danger float-right" :hidden="hasScore">Submit Score</button>
               </form>
             </div>
           @endforeach
@@ -106,6 +109,11 @@
   <hr class="my-4">
   <center>
     <h3>{{ $passcode->event->event_name }}</h3>
+    @if(session()->has('message'))
+    <div class="alert alert-primary bottom-alert text-center" role="alert">
+      {{ session('message') }}
+    </div>
+  @endif
   </center>
 </div>
 
@@ -125,6 +133,13 @@
       var target = $(e.target).attr("href")
       setContestantValue(($(target + ' .contList a.active').data('cont')), ($(target + ' .contList a.active').data('contid')))
     });
+
+    var scores = JSON.parse('{!! json_encode($passcode->score) !!}');
+    tabulation.scores = scores;
+
+    setTimeout(function(){
+      $(".bottom-alert").fadeOut(); 
+    }, 5000);
   });
 
   function setCategoryValue(category, categoryid) {
@@ -141,12 +156,31 @@
     category: 'category',
     categoryid: 'categoryid',
     contestant: 'contestant',
-    contestantid: 'contestantid'
+    contestantid: 'contestantid',
+    scores: []
   }
 
   app = new Vue({
     el: '#tabulation',
-    data: tabulation
+    data: tabulation,
+    computed: {
+      hasScore: function() {
+        for(i=0; i<this.scores.length;i++){
+          if(this.contestantid == this.scores[i].contestant_id && this.categoryid == this.scores[i].category_id) {
+            return true;
+          }
+        }
+        return false;
+      },
+      points: function() {
+        for(i=0; i<this.scores.length;i++){
+          if(this.contestantid == this.scores[i].contestant_id && this.categoryid == this.scores[i].category_id) {
+            return this.scores[i].score;
+          }
+        }
+        return null;
+      }
+    }
   });
 
 </script>

@@ -13,7 +13,6 @@ use App\User;
 
 class EventController extends Controller
 {
-    //
     public function addEvent(Request $request) {
         $event = new Event;
         $event->event_name = $request['eventname'];
@@ -25,52 +24,57 @@ class EventController extends Controller
         $lastEvent_id = $lastEvent['id'];
         if($request['contMs'] != null) {
             foreach($request['contMs'] as $key=>$value) {
-                $contestants[$key] = new Contestant(array(
+                $contestantsMs[] = [
                     'contestant_name' => $value,
                     'mister' => false,
                     'contestant_no' => $key + 1,
                     'event_id' => $lastEvent_id,
-                ));
-                // echo $contestants[$key];
+                ];
             }
-            Contestant::create($contestants);
+            DB::table('contestants')->insert($contestantsMs);
         }
+
         if($request['contMr'] != null) {
             foreach($request['contMr'] as $key=>$value) {
-                $contestants[] = new Contestant(array(
+                $contestantsMr[] = [
                     'contestant_name' => $value,
                     'mister' => true,
                     'contestant_no' => $key + 1,
                     'event_id' => $lastEvent_id,
-                ));
+                ];
             }
-            // Contestant::create($contestants);
+            DB::table('contestants')->insert($contestantsMr);
         }
+
         if($request['judges'] != null) {
             foreach($request['judges'] as $key=>$value) {
                 $code = substr(base_convert(microtime(), 10, 36), 6, 12);
-                $judges[] = new Passcode(array(
+                $judges[] = [
                     'code' => $code,
                     'event_id' => $lastEvent_id,
                     'judge_name' => $value,
                     'usable' => true,
-                ));
+                ];
             }
-            // Passcode::create($judges);
+            DB::table('passcodes')->insert($judges);
         }
+
         if($request['categories'] != null) {
             foreach($request['categories'] as $key=>$value) {
                 foreach($request['percentage'] as $key2=>$percentage) {
                     if($key == $key2) {
-                        $category[] = new Category(array(
+                        $category[] = [
                             'category_name' => $value,
                             'percentage' => $percentage,
                             'event_id' => $lastEvent_id,
-                        ));
+                        ];
                     }
                 }
             }
-            // Category::create($category);
+            DB::table('categories')->insert($category);
         }
+
+        return back()->with('message', 'New event has been created: ' . $request['eventname']);
     }
+
 }

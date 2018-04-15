@@ -93,7 +93,7 @@
                             <label for="cat_count">Number of Categories</label>
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control" type="number" min="1" name="cat_count" id="cat_count" v-model.number="catCount">
+                            <input class="form-control" type="number" min="1" max="100" name="cat_count" id="cat_count" v-model.number="catCount">
                         </div>
                     </div>
                     <table class="table table-bordered mt-2">

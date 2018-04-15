@@ -246,3 +246,16 @@ ol.rectangle-list ol {
 .red-list span:before{
     background: #fa8072!important;
 }
+
+.bottom-alert {
+    position: fixed;
+    bottom: 5px;
+    width: 95%;
+    -webkit-box-shadow: 10px 10px 5px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px -10px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px -10px rgba(0,0,0,0.75);
+}
+
+.white-bk {
+    background-color: white!important;
+}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Score;
+use App\Contestant;
+use App\Category;
 
 class ScoreController extends Controller
 {
@@ -24,6 +26,9 @@ class ScoreController extends Controller
         $newScore->score = $score;
         $newScore->save();
 
-        return redirect()->back();
+        $contestant = Contestant::find($contestantid);
+        $category = Category::find($categoryid);
+
+        return redirect()->back()->with('message', 'You gave ' . $score . ' to ' . $contestant->contestant_name . ' in ' . $category->category_name . ' Portion.');
     }
 }

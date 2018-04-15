@@ -14,12 +14,7 @@
 <div class="admincontainer" id="admincontainer">
     <div class="adminsidenav">
         <div class="card">
-            <div class="card-header">
-                My Events 
-                <a href="#newEventPanel" class="float-right" data-toggle="collapse" role="button">
-                    <i class="fas fa-plus"></i>&nbsp;&nbsp;add new
-                </a>
-            </div>
+            <div class="card-header">My Events</div>
             <div id="newEventPanel" class="collapse">
                 <div class="card-body">
                     <div class="card-title">Event Name</div>
@@ -52,18 +47,35 @@
                 </div>
             </div>
             <div class="nav list-group list-group-flush" role="tablist">
+                <a href="#newevent" id="newEventTab" class="nav-link list-group-item text-right" data-toggle="list" role="tab">
+                    <i class="fas fa-plus"></i>&nbsp;&nbsp;add new
+                </a>
                 @foreach(Auth::user()->event as $event)
-                    <a href="#" class="nav-link list-group-item" data-toggle="list" role="tab">
+                    <a href="#tab{{$event->id}}" class="nav-link list-group-item sidetabs" data-toggle="list" role="tab">
                         {{ $event->event_name }}
                     </a>
                 @endforeach
             </div>
         </div>
     </div>
-    <div class="admincontent container">
+    <div class="admincontent container tab-content">
+        <div class="tab-pane" role="tabpanel" id="newevent">
         @include('admin.newevent')
+        </div>
+        @foreach(Auth::user()->event as $event)
+        <div class="tab-pane" role="tabpanel" id="tab{{$event->id}}">
+        @include('admin.eventdetails')
+        </div>
+        @endforeach
     </div>
 </div>
+<center>
+    @if(session()->has('message'))
+    <div class="alert alert-primary bottom-alert text-center" role="alert">
+      {{ session('message') }}
+    </div>
+  @endif
+</center>
 @endsection
 
 @section('script')
@@ -145,6 +157,18 @@
         })
         console.log(categories);
         $('#addCategoryModal').modal('toggle');
-    });    
+    });
+
+    $('#newEventTab').click(function(){
+        $('#newEventPanel').collapse('show');
+    });
+
+    $('.sidetabs').click(function(){
+        $('#newEventPanel').collapse('hide');
+    });
+
+    setTimeout(function(){
+      $(".bottom-alert").fadeOut(); 
+    }, 5000);
 </script>
 @endsection
